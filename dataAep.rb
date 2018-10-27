@@ -31,6 +31,7 @@ class AepCostumers
 					#new custumer object will be created below
 					aCustumer = Database.new 
 					#Following are the properties of the object
+					aCustumer.connDate = connDate[peopleIndex]
 					aCustumer.billingIdNumber = billingId[peopleIndex]
 					aCustumer.ownOrRent = ownerOrRent[peopleIndex] 
 					aCustumer.housingType =	housingType[peopleIndex]

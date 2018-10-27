@@ -4,9 +4,10 @@ class Database
 	attr_accessor  :ownOrRent
 	attr_accessor  :billingIdNumber
 	attr_accessor  :segment
+	attr_accessor  :connDate
 
 	def initialize  
-		
+		@connDate = nil
 		@housingType = nil
 		@ownOrRent = nil
 		@billingIdNumber = nil
