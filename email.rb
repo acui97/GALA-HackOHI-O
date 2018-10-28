@@ -51,6 +51,7 @@ class Email
 			border-radius: 50%;"><p style = "
 				width: 100px;
 				top: 50%;
+				transform: translateY(-50%);
 				position: relative;
 				text-align: center;
 				font-size: 50px;
