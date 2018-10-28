@@ -34,7 +34,7 @@ class AepCostumers
 					aCustumer = Database.new 
 					
 					#Following are the properties of the object
-					aCustumer.years = currentDate.year - date.year
+					aCustumer.years = date.year - connDate[peopleIndex].year
 					aCustumer.connDate = connDate[peopleIndex]
 					aCustumer.billingIdNumber = billingId[peopleIndex]
 					aCustumer.ownOrRent = ownerOrRent[peopleIndex] 
