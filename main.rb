@@ -17,7 +17,6 @@ class Main
 		@@email = Email.new
 		mode = ARGV[0].to_i
 		# MAKE COMMAND LINE INPUT FOR VERSION TO RUN
-		puts mode
 		if mode == 1
 			run_program
 		elsif mode == 2
@@ -34,6 +33,9 @@ class Main
 
 			# Gets the list of customers from the database
 			list_customers = @@database.custumerList date
+			if list_customers.length == 0
+				puts "No anniversaries found today"
+			end
 			
 			# Goes through the process of checking emails if it is 9 AM
 			# if time.hour == 9
@@ -41,8 +43,18 @@ class Main
 				list_customers.each do |customer|
 
 					# Here is where we would grab their email address
-					address = "cui.400@osu.edu" # FIX for actual use
-					@@email.deliver address, @@database, customer # FIX WHEN DB DONE AND EMAIL DONE
+					puts "Enter email that you will be using"
+					address = STDIN.gets.chomp # FIX for actual use
+					# HERE IS WHERE WE SHOULD ADD IMAGE
+					run = @@email.deliver address, @@database, customer rescue false # FIX WHEN DB DONE AND EMAIL DONE
+
+					unless run
+						until run
+							puts "Enter a valid email"
+							address = STDIN.gets.chomp
+							run = @@email.deliver address, @@database, customer rescue false
+						end
+					end
 
 
 					# THIS BLOCK IS COMMENTED OUT BECAUSE DATABASE WILL HANDLE THE DATE COMPARISON
@@ -57,9 +69,8 @@ class Main
 				end
 			# end
 			# Sleeping for the rest of the day, runs next day at 8 AM
-			if time.hour == Time.new.hour
-				sleep(115200 - (Time.new.hour*3600 + Time.new.min*60 + Time.new.sec))
-			end
+			puts "Sleeping for #{115200 - (Time.new.hour*3600 + Time.new.min*60 + Time.new.sec)} seconds" 
+			sleep(115200 - (Time.new.hour*3600 + Time.new.min*60 + Time.new.sec))
 		end
 	end
 
@@ -105,15 +116,26 @@ class Main
 
 			# Gets the list of customers from the database
 			list_customers = @@database.custumerList date # FIX WHEN DB DONE
-			list_customers
+			if list_customers.length == 0
+				puts "No anniversaries found today"
+			end
 			
 			# Iterate over each customer and looks at their connection date
 			list_customers.each do |customer|
 				# Here is where we would grab their email address
-				puts "gets into customer loop"
-				address = "cui.400@osu.edu" # FIX for actual use
+				puts "Enter email that you will be using"
+				address = STDIN.gets.chomp # FIX for actual use
 				# HERE IS WHERE WE SHOULD ADD IMAGE
-				@@email.deliver address, @@database, customer # FIX WHEN DB DONE AND EMAIL DONE
+				run = @@email.deliver address, @@database, customer rescue false # FIX WHEN DB DONE AND EMAIL DONE
+
+				unless run
+					until run
+						puts "Enter a valid email"
+						address = STDIN.gets.chomp
+						run = @@email.deliver address, @@database, customer rescue false
+					end
+				end
+
 
 				# THIS BLOCK IS COMMENTED OUT BECAUSE DATABASE WILL HANDLE THE DATE COMPARISON
 				# # Compares the current day with the customer's date of connection and ensures the customer was not added on the same year
