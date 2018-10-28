@@ -1,6 +1,9 @@
+# This class sends an email to clients depending on their respective data. The email consists of a thank you for x years of loyalty to AEP
+# addressed to the customer's ID number and it states what AEP is doing to improve performance in their area.
+
 class Email
 	require'mail'
-	
+	# Options of the email sent, includes details such as our team's email and password to send the email
 	@@options = { :address         => "smtp.gmail.com",
 	            :port                 => 587,
 	            :user_name            => 'modernwebfighters@gmail.com',
@@ -18,6 +21,7 @@ class Email
 		end
 	end
 	
+	# Generates the content of the email in html format. 
 	def generate_content database, customer
 		page = '<html lang="en">
 		<head>
@@ -31,7 +35,7 @@ class Email
 		<h3>Dear Customer #'
 		page += customer.billingIdNumber.to_s
 		page += ',</h3>
-		<div style="background-color:lightgray"><br /><br /><div style="
+		<div style="background-color:lightgray; padding-bottom: 20px;"><br /><br /><div style="
 		width: 500px;
 		height: auto;
 		text-align: center;
@@ -42,7 +46,7 @@ class Email
 			width: 100px;
 			height: 100px;
 			margin: 5px 200px;
-			padding: 0px;
+			vertical-align: middle;
 			background-color: skyblue;
 			border-radius: 50%;"><p style = "
 				width: 100px;
@@ -70,6 +74,7 @@ class Email
 	end
 	private :generate_content
 	
+	# Generates the content of the email and then sends it to the customer
 	def deliver destination_address, database, customer
 	
 		puts "gets to email"

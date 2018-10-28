@@ -1,5 +1,6 @@
 # File created on 10-27-2018 for HackOHI/O by Andy Cui
 
+# The user enters an argument and that decides whether the program runs continuously in real time or a sample day, either today or a future day
 require_relative 'email'
 require_relative 'database'
 require_relative 'dataAep'
@@ -35,7 +36,7 @@ class Main
 			list_customers = @@database.custumerList date
 			
 			# Goes through the process of checking emails if it is 9 AM
-			if time.hour == 9
+			# if time.hour == 9
 				# Iterate over each customer and looks at their connection date
 				list_customers.each do |customer|
 
@@ -54,10 +55,10 @@ class Main
 					# 	end
 					# end
 				end
-			end
-			# Sleeping for the rest of the hour
+			# end
+			# Sleeping for the rest of the day, runs next day at 8 AM
 			if time.hour == Time.new.hour
-				sleep(3600 - (Time.new.min*60 + Time.new.sec))
+				sleep(115200 - (Time.new.hour*3600 + Time.new.min*60 + Time.new.sec))
 			end
 		end
 	end
@@ -78,13 +79,6 @@ class Main
 			day = false
 			run = Date.new(year, month, day) rescue false
 			while !month || !day || !run || Date.new(year, month, day) < Date.new 
-
-				if year && month && day
-					puts Date.new(year, month, day) < Date.new
-					puts month
-					puts day
-					puts run
-				end
 
 				puts "What is the month you would like to test? Enter the current or a future month."
 				month = Integer(STDIN.gets.chomp) rescue false
