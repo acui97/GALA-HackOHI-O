@@ -9,7 +9,9 @@ Andy Cui - Created the main.rb file, helped debug, and changed some styling
 
 # Instructions
 $ bundle install
-for the following instruction, use main.rb 1 or main.rb 2. The first option will run continuously and sleep when not processing. It will send emails out every morning to anniversary customers at 8 AMThe second option will allow you to select a certain day to test. We recommend using any current or future year, and 6/30 to see two anniversary emails. 
+
+For the following instruction, use main.rb 1 or main.rb 2. The first option will run continuously and sleep when not processing. It will send emails out every morning to anniversary customers at 8 AMThe second option will allow you to select a certain day to test. We recommend using any current or future year, and 6/30 to see two anniversary emails. 
+
 $ ruby main.rb 1
 or
 $ ruby main.rb 2
