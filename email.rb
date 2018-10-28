@@ -64,7 +64,8 @@ class Email
 		<p>Since you joined us, we\'ve added or updated '
 		page += (database.numOfassetImprovement customer.billingIdNumber).to_s
 		page += ' assets to your network to improve the quality you receive. 
-		We will continue to work on making your experience better!</p>'
+		We will continue to work on making your experience better!<br /><br />
+		If you have any further questions please visit our site at <a href="https://www.aepohio.com">www.aepohio.com</a><br /><br />We value your feedback greatly and would love to hear back from you!</p>'
 		page += '</div></div></body></html>'
 	
 	
@@ -78,7 +79,6 @@ class Email
 	# Generates the content of the email and then sends it to the customer
 	def deliver destination_address, database, customer
 	
-		puts "gets to email"
 		generate_content database, customer
 		# create the Mail object
 		@mail = Mail.new do
@@ -90,6 +90,7 @@ class Email
 		# send the email
 		@mail.deliver
 		puts 'Email is delivered to ' + destination_address + "!"
+		true
 	end
 	
 	

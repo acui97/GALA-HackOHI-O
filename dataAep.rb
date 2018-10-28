@@ -64,7 +64,6 @@ class AepCostumers
 			peopleIndex += 1
 
 		end
-		puts numOfassetImprovement
 		return numOfassetImprovement
 	end 
 
