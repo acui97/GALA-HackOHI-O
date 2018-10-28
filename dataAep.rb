@@ -11,6 +11,8 @@ class AepCostumers
 		@@data = Roo::Spreadsheet.open('./HackOHiO_AEP Data.xlsx')
 	end
 
+	
+
 	# This method looks for the people who joined the Aep on the given day and returns the object of 
 	# each custumer with their billing Id, husingType, ownOrRent, segments etc
 	def custumerList date
@@ -23,14 +25,16 @@ class AepCostumers
 		ownerOrRent = custumerData.column(7) #Array of owner types of custumers
 		housingType = custumerData.column(8) #Array of husingType
 		billingId = custumerData.column(1)	 #array of billingId of all the custumers in the sheet
-		
+		currentDate = DateTime.now 
 		peopleIndex = 1  			#indexing the the array.
 		while peopleIndex < connDate.length #checks all the data
 			if connDate[peopleIndex].month == date.month  #compares if months is equal 
 				if connDate[peopleIndex].day == date.day	#checks if days are equal if months is equal.
 					#new custumer object will be created below
 					aCustumer = Database.new 
+					
 					#Following are the properties of the object
+					aCustumer.years = currentDate.year - date.year
 					aCustumer.connDate = connDate[peopleIndex]
 					aCustumer.billingIdNumber = billingId[peopleIndex]
 					aCustumer.ownOrRent = ownerOrRent[peopleIndex] 
