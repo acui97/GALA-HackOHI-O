@@ -4,7 +4,7 @@ This project sends a customer appreciation email, thanking the customer for x ye
 # Contributors
 Logan Walters - Outlined the project and described how we should try to use the data. Designed the html and css as well as pair programmed.
 Ganesh Rahut - Created the DataAEP class and functions to extract and manipulate the data from the dataset.
-Muhammed Akhlak Chowdhury - Created the email class
+Akhlak Chowdhury - Developed a controler using ruby, which will query users' information from DataAEP class and will send emails to users accordingly. Email will contain user's information, power usage trend and comparison. Contributed debugging and pair programming.  
 Andy Cui - Created the main.rb file, helped debug, and changed some styling
 
 # Instructions
